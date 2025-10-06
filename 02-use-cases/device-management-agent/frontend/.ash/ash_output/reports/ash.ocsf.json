@@ -1,0 +1,146 @@
+[
+  {
+    "activity_id": 1,
+    "activity_name": "Scan",
+    "category_name": "Findings",
+    "category_uid": 2,
+    "class_uid": 2002,
+    "finding_info": {
+      "desc": "Try, Except, Continue detected.",
+      "title": "B112 in main.py - Try, Except, Continue detected.",
+      "uid": "02b610a5-aba3-4967-a7b8-1839922e466a"
+    },
+    "metadata": {
+      "logged_time": 1759770917691,
+      "product": {
+        "name": "Automated Security Helper",
+        "vendor_name": "Amazon Web Services",
+        "version": "3.0.0"
+      },
+      "version": "1.1.0"
+    },
+    "severity_id": 2,
+    "status": "New",
+    "status_id": 1,
+    "time": 1759770917691,
+    "type_uid": 200201,
+    "vulnerabilities": [
+      {
+        "affected_code": [
+          {
+            "end_line": 199,
+            "file": {
+              "name": "main.py",
+              "path": "main.py",
+              "type_id": 1
+            },
+            "start_line": 198
+          }
+        ],
+        "cve": {
+          "desc": "Try, Except, Continue detected.",
+          "uid": "B112"
+        },
+        "desc": "Try, Except, Continue detected.",
+        "severity": "NOTE",
+        "title": "B112"
+      }
+    ]
+  },
+  {
+    "activity_id": 1,
+    "activity_name": "Scan",
+    "category_name": "Findings",
+    "category_uid": 2,
+    "class_uid": 2002,
+    "finding_info": {
+      "desc": "Secret of type 'Secret Keyword' detected in file '.env' at line 11",
+      "title": "SECRET-SECRET-KEYWORD in .env - Secret of type 'Secret Keyword' detected in file '.env' at line 11",
+      "uid": "7791a8ec-a677-400e-a85d-2cc3c0d74f33"
+    },
+    "metadata": {
+      "logged_time": 1759770917691,
+      "product": {
+        "name": "Automated Security Helper",
+        "vendor_name": "Amazon Web Services",
+        "version": "3.0.0"
+      },
+      "version": "1.1.0"
+    },
+    "severity_id": 4,
+    "status": "New",
+    "status_id": 1,
+    "time": 1759770917691,
+    "type_uid": 200201,
+    "vulnerabilities": [
+      {
+        "affected_code": [
+          {
+            "end_line": 11,
+            "file": {
+              "name": ".env",
+              "path": ".env",
+              "type_id": 1
+            },
+            "start_line": 11
+          }
+        ],
+        "cve": {
+          "desc": "Secret of type 'Secret Keyword' detected in file '.env' at line 11",
+          "uid": "SECRET-SECRET-KEYWORD"
+        },
+        "desc": "Secret of type 'Secret Keyword' detected in file '.env' at line 11",
+        "severity": "ERROR",
+        "title": "SECRET-SECRET-KEYWORD"
+      }
+    ]
+  },
+  {
+    "activity_id": 1,
+    "activity_name": "Scan",
+    "category_name": "Findings",
+    "category_uid": 2,
+    "class_uid": 2002,
+    "finding_info": {
+      "desc": "Manually-created forms in django templates should specify a csrf_token to prevent CSRF attacks.",
+      "title": "python.django.security.django-no-csrf-token.django-no-csrf-token in simple_login.html - Manually-created forms in django...",
+      "uid": "a698ef5e-e8b9-49b1-8982-b863b2fe9b22"
+    },
+    "metadata": {
+      "logged_time": 1759770917691,
+      "product": {
+        "name": "Automated Security Helper",
+        "vendor_name": "Amazon Web Services",
+        "version": "3.0.0"
+      },
+      "version": "1.1.0"
+    },
+    "severity_id": 4,
+    "status": "New",
+    "status_id": 1,
+    "time": 1759770917691,
+    "type_uid": 200201,
+    "vulnerabilities": [
+      {
+        "affected_code": [
+          {
+            "end_line": 122,
+            "file": {
+              "name": "simple_login.html",
+              "path": "templates/simple_login.html",
+              "type_id": 1
+            },
+            "start_line": 111
+          }
+        ],
+        "cve": {
+          "desc": "Manually-created forms in django templates should specify a csrf_token to prevent CSRF attacks.",
+          "uid": "python.django.security.django-no-csrf-token.django-no-csrf-token"
+        },
+        "desc": "Manually-created forms in django templates should specify a csrf_token to prevent CSRF attacks.",
+        "severity": "ERROR",
+        "title": "python.django.security.django-no-csrf-token.django-no-csrf-token"
+      }
+    ]
+  }
+]

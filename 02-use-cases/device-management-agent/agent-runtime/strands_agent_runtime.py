@@ -1,6 +1,36 @@
 """
-Device Remote Management AI Agent for Amazon Bedrock AgentCore Runtime
-This version is adapted to work with Amazon Bedrock AgentCore Runtime
+Device Management System - Agent Runtime
+
+This module implements the core conversational AI agent for the Device Management System
+using Amazon Bedrock AgentCore Runtime and the Strands Agents SDK. The agent handles
+natural language processing, conversation management, and tool execution for IoT device
+management operations.
+
+Key Features:
+    - Natural language understanding using Amazon Bedrock models
+    - Conversation context management with sliding window
+    - MCP (Model Context Protocol) tool integration
+    - Real-time WebSocket communication
+    - Comprehensive observability with logging and tracing
+
+Architecture:
+    - Strands Agent: Core conversational AI using Amazon Bedrock
+    - MCP Client: Communication with Gateway for tool execution
+    - Conversation Manager: Context and history management
+    - Authentication: Amazon Cognito OAuth integration
+    - Observability: CloudWatch Logs and X-Ray tracing
+
+Environment Variables:
+    MCP_SERVER_URL: Gateway endpoint for MCP tool access
+    COGNITO_DOMAIN: Amazon Cognito domain for authentication
+    COGNITO_CLIENT_ID: OAuth client ID
+    COGNITO_CLIENT_SECRET: OAuth client secret
+    AWS_REGION: AWS region for services
+
+Example Usage:
+    The agent runtime is typically deployed as a service and accessed via WebSocket
+    connections from the frontend application. It processes natural language queries
+    and executes device management operations through the MCP protocol.
 """
 import os
 import json

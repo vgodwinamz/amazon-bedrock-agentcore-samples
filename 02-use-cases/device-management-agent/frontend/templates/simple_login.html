@@ -109,6 +109,7 @@
         {% endif %}
 
         <form method="post" action="/simple-login">
+            <!-- CSRF Protection: Token validated server-side to prevent cross-site request forgery -->
             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
             <div class="form-group">
                 <label for="username">Username</label>

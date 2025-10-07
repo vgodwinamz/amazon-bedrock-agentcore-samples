@@ -37,6 +37,7 @@ Output:
 
 import boto3
 import os
+import sys
 from dotenv import load_dotenv, set_key
 from bedrock_agentcore_starter_toolkit.operations.gateway import GatewayClient
 
@@ -112,4 +113,4 @@ try:
 
 except Exception as e:
     print(f"Error creating gateway: {e}")
-    exit(1)
+    sys.exit(1)

@@ -36,7 +36,7 @@ def store_provider_name_in_env(provider_name: str):
         # Read existing .env file content
         env_lines = []
         if os.path.exists(env_file_path):
-            with open(env_file_path, 'r') as f:
+            with open(env_file_path, 'r', encoding='utf-8') as f:
                 env_lines = f.readlines()
         
         # Remove existing COGNITO_PROVIDER_NAME if it exists
@@ -46,7 +46,7 @@ def store_provider_name_in_env(provider_name: str):
         env_lines.append(f"COGNITO_PROVIDER_NAME={provider_name}\n")
         
         # Write back to .env file
-        with open(env_file_path, 'w') as f:
+        with open(env_file_path, 'w', encoding='utf-8') as f:
             f.writelines(env_lines)
         
         click.echo(f"📦 Stored provider name in .env file: {provider_name}")
@@ -67,14 +67,14 @@ def delete_provider_name_from_env():
             return
         
         # Read existing .env file content
-        with open(env_file_path, 'r') as f:
+        with open(env_file_path, 'r', encoding='utf-8') as f:
             env_lines = f.readlines()
         
         # Remove COGNITO_PROVIDER_NAME line
         env_lines = [line for line in env_lines if not line.startswith('COGNITO_PROVIDER_NAME=')]
         
         # Write back to .env file
-        with open(env_file_path, 'w') as f:
+        with open(env_file_path, 'w', encoding='utf-8') as f:
             f.writelines(env_lines)
         
         click.echo("🧹 Removed provider name from .env file")

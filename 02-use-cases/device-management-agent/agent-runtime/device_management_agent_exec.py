@@ -7,6 +7,7 @@ import utils
 import json
 from dotenv import load_dotenv
 import os
+import sys
 import argparse
 
 # Reading environment variables
@@ -27,7 +28,7 @@ args = parser.parse_args()
 # Validate agent ARN
 if not args.agent_arn:
     print("❌ Agent ARN is required. Use --agent_arn parameter")
-    exit(1)
+    sys.exit(1)
 
 print(f"🚀 Connecting to agent: {args.agent_arn}")
 
@@ -39,7 +40,7 @@ try:
     print("✅ Successfully connected to AWS Bedrock AgentCore")
 except Exception as e:
     print(f"❌ Error connecting to AgentCore: {e}")
-    exit(1)
+    sys.exit(1)
 
 sessionId = args.session_id
 

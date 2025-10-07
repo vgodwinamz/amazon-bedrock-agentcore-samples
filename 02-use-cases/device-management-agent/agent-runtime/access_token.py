@@ -84,12 +84,9 @@ def get_cognito_token_direct():
         print("Debug - Making token request...")
         # Make token request
         response = requests.post(token_url, headers=headers, data=data, timeout=30)
+        response.raise_for_status()
         print(f"Debug - Response status: {response.status_code}")
         print(f"Debug - Response headers: {dict(response.headers)}")
-        
-        if response.status_code != 200:
-            print(f"Debug - Response text: {response.text}")
-            response.raise_for_status()
         
         token_data = response.json()
         print(f"Debug - Token data keys: {list(token_data.keys())}")

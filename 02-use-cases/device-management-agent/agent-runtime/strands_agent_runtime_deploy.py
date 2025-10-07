@@ -5,6 +5,7 @@ from bedrock_agentcore_starter_toolkit import Runtime
 import time
 import utils
 import os
+import sys
 from dotenv import load_dotenv
 import argparse
 
@@ -46,7 +47,7 @@ try:
 except Exception as e:
     print(f"Error creating AgentCore client: {e}")
     print("Make sure your AWS credentials are configured and utils.py has the create_agentcore_client function")
-    exit(1)
+    sys.exit(1)
 
 # Launch configurations
 FilesToCopy = [
@@ -171,10 +172,10 @@ try:
     print("Configuration successful")
 except Exception as e:
     print(f"Configuration failed: {e}")
-    exit(1)
+    sys.exit(1)
 
 print("Appending to .dockerignore file")
-with open(os.path.join(script_dir, ".dockerignore"), "a") as f:
+with open(os.path.join(script_dir, ".dockerignore"), "a", encoding='utf-8') as f:
     f.write("\n")
     f.write("# Auto-generated exclusions\n")
     for ignorefile in dockerignoreappend:
@@ -186,7 +187,7 @@ try:
     print(f"Agent created with ARN: {launch_result.agent_arn}")
 except Exception as e:
     print(f"Launch failed: {e}")
-    exit(1)
+    sys.exit(1)
 
 # Monitor deployment status
 print("Monitoring deployment status...")

@@ -1,5 +1,6 @@
 import boto3
 import os
+import sys
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -55,16 +56,16 @@ if __name__ == "__main__":
         print(f"AWS Account ID: {account_id}")
     except Exception as e:
         print(f"Error getting AWS account ID: {e}")
-        exit(1)
+        sys.exit(1)
     
     # Validate required environment variables
     if not gateway_arn:
         print("Error: GATEWAY_ARN not found in environment variables")
-        exit(1)
+        sys.exit(1)
     
     if not gateway_id:
         print("Error: GATEWAY_ID not found in environment variables")
-        exit(1)
+        sys.exit(1)
     
     print(f"Gateway ARN: {gateway_arn}")
     print(f"Gateway ID: {gateway_id}")

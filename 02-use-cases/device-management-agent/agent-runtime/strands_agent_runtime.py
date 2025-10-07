@@ -109,6 +109,7 @@ def check_mcp_server():
             
             try:
                 response = requests.post(f"{MCP_SERVER_URL}/mcp", headers=headers, json=payload, timeout=10)
+                response.raise_for_status()
                 logger.info(f"MCP server response status: {response.status_code}")
                 
                 has_tools = "tools" in response.text
@@ -121,6 +122,7 @@ def check_mcp_server():
             logger.info("No bearer token available, trying health endpoint")
             try:
                 response = requests.get(f"{MCP_SERVER_URL}/health", timeout=5)
+                response.raise_for_status()
                 logger.info(f"Health endpoint response status: {response.status_code}")
                 
                 return response.status_code == 200

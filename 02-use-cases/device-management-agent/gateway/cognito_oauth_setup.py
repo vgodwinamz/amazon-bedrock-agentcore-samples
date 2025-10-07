@@ -50,7 +50,7 @@ def update_env_file(file_path, updates, description):
     """Update or create .env file with given updates."""
     if os.path.exists(file_path):
         # Read existing .env file
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
         
         # Update or add the configuration values
@@ -67,7 +67,7 @@ def update_env_file(file_path, updates, description):
                     content += f'\n{replacement}'
         
         # Write updated content back to .env file
-        with open(file_path, 'w') as file:
+        with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content)
         
         print(f"\n✅ Updated existing {description} with Cognito configuration:")
@@ -81,7 +81,7 @@ def update_env_file(file_path, updates, description):
                 content += f'{key}={value}\n'
         
         # Write new .env file
-        with open(file_path, 'w') as file:
+        with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content)
         
         print(f"\n✅ Created new {description} with Cognito configuration:")

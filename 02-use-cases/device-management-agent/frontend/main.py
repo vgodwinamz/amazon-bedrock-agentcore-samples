@@ -465,7 +465,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                         if e.response['Error']['Code'] == 'throttlingException' and attempt < max_retries - 1:
                             logger.warning(f"Throttling exception encountered. Retrying in {retry_delay} seconds...")
                             await manager.send_message(json.dumps({"status": f"Rate limited. Retrying in {retry_delay} seconds..."}), client_id)
-                            time.sleep(retry_delay)
+                            await asyncio.sleep(retry_delay)
                             # Exponential backoff
                             retry_delay *= 2
                         else:

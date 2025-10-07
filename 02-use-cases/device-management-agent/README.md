@@ -76,14 +76,26 @@ Your AWS user/role needs permissions for:
         {
             "Effect": "Allow",
             "Action": [
-                "iam:PassRole",
+                "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/DeviceManagement*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
                 "bedrock-agentcore:*",
                 "lambda:*",
                 "dynamodb:*",
                 "cognito-idp:*",
                 "logs:*"
             ],
-            "Resource": "*"
+            "Resource": [
+                "arn:aws:bedrock-agentcore:*:*:*",
+                "arn:aws:lambda:*:*:function:device-management-*",
+                "arn:aws:dynamodb:*:*:table/Devices*",
+                "arn:aws:cognito-idp:*:*:userpool/*",
+                "arn:aws:logs:*:*:log-group:/aws/lambda/device-management-*"
+            ]
         }
     ]
 }

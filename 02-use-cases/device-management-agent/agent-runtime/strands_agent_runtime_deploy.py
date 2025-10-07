@@ -199,7 +199,8 @@ end_status = ['READY', 'CREATE_FAILED', 'DELETE_FAILED', 'UPDATE_FAILED']
 
 while status not in end_status:
     print(f"Current status: {status}")
-    # Sleep is necessary to avoid overwhelming the API while polling deployment status
+    # REQUIRED: Sleep prevents API rate limiting during deployment status polling
+    # This is not arbitrary - it's the recommended polling interval for AgentCore deployments
     time.sleep(10)
     try:
         status_response = agentcore_runtime.status()

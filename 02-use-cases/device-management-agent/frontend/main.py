@@ -433,7 +433,6 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                 session_id = manager.get_session_id(client_id)
                 
                 # Invoke the agent with retry logic
-                import time
                 from botocore.exceptions import ClientError
                 
                 max_retries = 3

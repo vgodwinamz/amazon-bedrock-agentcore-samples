@@ -518,7 +518,7 @@ def generate_synthetic_data():
             create_user_activity(user['user_id'], activity_type, description, ip_address, timestamp)
             user_activities_count += 1
     
-    print(f"Synthetic data generated successfully!")
+    print("Synthetic data generated successfully!")
     print(f"- {len(devices)} devices created")
     print(f"- {len(users)} users created")
     print(f"- {wifi_count} WiFi networks created")

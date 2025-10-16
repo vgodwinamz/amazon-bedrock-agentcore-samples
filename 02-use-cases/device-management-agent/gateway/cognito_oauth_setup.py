@@ -127,10 +127,10 @@ def update_env_file(file_path, updates, description):
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content)
         
-        print(f"\n✅ Updated existing {description} with Cognito configuration:")
+        print("\n✅ Updated existing {} with Cognito configuration:".format(description))
     else:
         # Create new .env file with configuration
-        content = f"# Cognito OAuth configuration\n"
+        content = "# Cognito OAuth configuration\n"
         
         # Add configuration values
         for key, value in updates.items():
@@ -141,7 +141,7 @@ def update_env_file(file_path, updates, description):
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content)
         
-        print(f"\n✅ Created new {description} with Cognito configuration:")
+        print("\n✅ Created new {} with Cognito configuration:".format(description))
     
     # Print the configuration values
     for key, value in updates.items():
@@ -174,6 +174,6 @@ update_env_file(env_file_path, local_updates, "local .env file")
 # Update agent-runtime .env file (new functionality)
 update_env_file(agent_runtime_env_path, agent_runtime_updates, "agent-runtime .env file")
 
-print(f"\n🎉 Successfully updated both .env files with Cognito OAuth configuration!")
-print(f"   Local .env: {os.path.abspath(env_file_path)}")
-print(f"   Agent-runtime .env: {os.path.abspath(agent_runtime_env_path)}")
+print("\n🎉 Successfully updated both .env files with Cognito OAuth configuration!")
+print("   Local .env: {}".format(os.path.abspath(env_file_path)))
+print("   Agent-runtime .env: {}".format(os.path.abspath(agent_runtime_env_path)))

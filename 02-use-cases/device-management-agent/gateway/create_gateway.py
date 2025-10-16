@@ -87,7 +87,7 @@ try:
     # Print the gateway ID and other information
     gateway_id = create_response.get('gatewayId')
     gateway_arn = create_response.get('gatewayArn')
-    print(f"Gateway created successfully!")
+    print("Gateway created successfully!")
     print(f"Gateway ID: {gateway_id}")
     print(f"Gateway ARN: {gateway_arn}")
     print(f"Creation Time: {create_response.get('creationTime')}")

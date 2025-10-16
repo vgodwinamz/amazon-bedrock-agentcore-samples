@@ -59,9 +59,12 @@ def get_cognito_token_direct():
         
         if not all([cognito_domain, client_id, client_secret]):
             missing = []
-            if not cognito_domain: missing.append("COGNITO_DOMAIN")
-            if not client_id: missing.append("COGNITO_CLIENT_ID")
-            if not client_secret: missing.append("COGNITO_CLIENT_SECRET")
+            if not cognito_domain:
+                missing.append("COGNITO_DOMAIN")
+            if not client_id:
+                missing.append("COGNITO_CLIENT_ID")
+            if not client_secret:
+                missing.append("COGNITO_CLIENT_SECRET")
             raise ValueError(f"Missing Cognito configuration: {', '.join(missing)}")
         
         # Prepare token request

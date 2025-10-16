@@ -97,16 +97,12 @@ Notes:
     - Logout clears both session and cookies
 """
 import os
-import base64
-import json
 import logging
 from urllib.parse import urlencode
 from typing import Optional, Dict, Any
 
 import httpx
-from fastapi import Request, HTTPException, Depends
-from fastapi.responses import RedirectResponse
-from starlette.middleware.sessions import SessionMiddleware
+from fastapi import Request, HTTPException
 from jose import jwk, jwt
 from jose.utils import base64url_decode
 

@@ -121,7 +121,7 @@ def update_env_file(file_path, updates, description):
                     content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
                 else:
                     # Add new value at the end
-                    content += f'\n{replacement}'
+                    content += '\n{}'.format(replacement)
         
         # Write updated content back to .env file
         with open(file_path, 'w', encoding='utf-8') as file:
@@ -135,7 +135,7 @@ def update_env_file(file_path, updates, description):
         # Add configuration values
         for key, value in updates.items():
             if value:  # Only add if value exists
-                content += f'{key}={value}\n'
+                content += '{}={}\n'.format(key, value)
         
         # Write new .env file
         with open(file_path, 'w', encoding='utf-8') as file:

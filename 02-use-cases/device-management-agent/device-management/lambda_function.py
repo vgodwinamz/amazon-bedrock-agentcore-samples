@@ -45,9 +45,7 @@ Example Response:
     }
 """
 import json
-import os
 import datetime
-import uuid
 import logging
 import boto3
 from decimal import Decimal

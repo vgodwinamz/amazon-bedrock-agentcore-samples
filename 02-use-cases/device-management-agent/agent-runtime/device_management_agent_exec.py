@@ -60,11 +60,9 @@ Notes:
     - Supports both streaming and non-streaming response formats
     - Includes retry logic for AWS throttling exceptions
 """
-import boto3
 import utils
 import json
 from dotenv import load_dotenv
-import os
 import sys
 import argparse
 

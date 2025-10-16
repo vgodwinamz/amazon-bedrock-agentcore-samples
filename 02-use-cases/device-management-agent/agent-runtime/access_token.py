@@ -20,9 +20,7 @@ Example:
 """
 
 import os
-import boto3
 import requests
-import json
 from dotenv import load_dotenv
 from bedrock_agentcore.identity.auth import requires_access_token
 

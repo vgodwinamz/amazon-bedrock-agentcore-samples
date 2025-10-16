@@ -172,10 +172,7 @@ Notes:
     - Requires appropriate IAM permissions for DynamoDB
 """
 import boto3
-import os
-import uuid
 import datetime
-from boto3.dynamodb.conditions import Key, Attr
 from decimal import Decimal
 import json
 

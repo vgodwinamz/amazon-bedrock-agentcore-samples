@@ -45,9 +45,8 @@ Example:
 import os
 import json
 import logging
-import uuid
 import secrets
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Optional
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, HTTPException, Depends, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -59,7 +58,7 @@ from dotenv import load_dotenv
 import boto3
 
 # Import authentication module
-from auth import get_login_url, exchange_code_for_tokens, validate_token, get_current_user, login_required, get_logout_url
+from auth import get_login_url, exchange_code_for_tokens, validate_token, get_current_user, login_required
 
 # Load environment variables
 load_dotenv()
@@ -464,7 +463,8 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                     except ClientError as e:
                         if e.response['Error']['Code'] == 'throttlingException' and attempt < max_retries - 1:
                             logger.warning(f"Throttling exception encountered. Retrying in {retry_delay} seconds...")
-                            await manager.send_message(json.dumps({"status": f"Rate limited. Retrying in {retry_delay} seconds..."}), client_id)
+                            await manager.send_message(json.dumps({"status": "Rate limited. Retrying in {} seconds...".format(retry_delay)}), client_id)
+                            import asyncio
                             await asyncio.sleep(retry_delay)
                             # Exponential backoff
                             retry_delay *= 2
@@ -481,9 +481,6 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                     logger.warning("No runtimeSessionId in response")
                     # Keep using the existing session ID if available
                     new_session_id = session_id
-                
-                # Process streaming response
-                full_response = ""
                 
                 # Handle streaming response from AgentCore
                 if isinstance(boto3_response, dict) and "response" in boto3_response:

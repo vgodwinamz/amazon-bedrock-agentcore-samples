@@ -117,8 +117,6 @@ import random
 import uuid
 from decimal import Decimal
 import boto3
-import os
-import json
 
 # Configure DynamoDB connection
 # Always use AWS DynamoDB in us-west-2
@@ -153,7 +151,7 @@ def create_device(device_data):
     if 'last_connected' in device_data and device_data['last_connected']:
         device_data['last_connected'] = datetime_to_iso(device_data['last_connected'])
     
-    response = table.put_item(Item=device_data)
+    table.put_item(Item=device_data)
     return device_data
 
 # Device Settings CRUD operations
@@ -171,7 +169,7 @@ def create_device_setting(device_id, setting_key, setting_value, last_updated=No
         'last_updated': datetime_to_iso(last_updated)
     }
     
-    response = table.put_item(Item=item)
+    table.put_item(Item=item)
     return item
 
 # WiFi Network CRUD operations
@@ -196,7 +194,7 @@ def create_wifi_network(network_data):
     if 'signal_strength' in network_data and network_data['signal_strength'] is not None:
         network_data['signal_strength'] = Decimal(str(network_data['signal_strength']))
     
-    response = table.put_item(Item=network_data)
+    table.put_item(Item=network_data)
     return network_data
 
 # User CRUD operations
@@ -217,7 +215,7 @@ def create_user(user_data):
     if 'last_login' in user_data and user_data['last_login']:
         user_data['last_login'] = datetime_to_iso(user_data['last_login'])
     
-    response = table.put_item(Item=user_data)
+    table.put_item(Item=user_data)
     return user_data
 
 # User Activity CRUD operations
@@ -238,7 +236,7 @@ def create_user_activity(user_id, activity_type, description=None, ip_address=No
         'ip_address': ip_address
     }
     
-    response = table.put_item(Item=item)
+    table.put_item(Item=item)
     return item
 
 def generate_synthetic_data():
@@ -466,7 +464,7 @@ def generate_synthetic_data():
                 device = random.choice(devices)
                 description = f"Imported settings to device {device['name']}"
             elif activity_type == "group_created":
-                description = f"Created device group '{random.choice(['Production', 'Testing', 'Development', 'Backup', 'Remote', 'Office', 'Warehouse'])}'"
+                description = "Created device group '{}'".format(random.choice(['Production', 'Testing', 'Development', 'Backup', 'Remote', 'Office', 'Warehouse']))
             elif activity_type == "group_modified":
                 description = f"Modified device group '{random.choice(['Production', 'Testing', 'Development', 'Backup', 'Remote', 'Office', 'Warehouse'])}'"
             elif activity_type == "permission_changed":

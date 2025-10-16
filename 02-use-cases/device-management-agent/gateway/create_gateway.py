@@ -56,8 +56,8 @@ GATEWAY_NAME = os.getenv('GATEWAY_NAME', 'Device-Management-Gateway')
 ROLE_ARN = os.getenv('ROLE_ARN')
 GATEWAY_DESCRIPTION = os.getenv('GATEWAY_DESCRIPTION', 'Device Management Gateway')
 
-print(ENDPOINT_URL)
-print(AWS_REGION)
+print("Endpoint URL: {}".format(ENDPOINT_URL))
+print("AWS Region: {}".format(AWS_REGION))
 
 # Initialize the Bedrock Agent Core Control client
 bedrock_agent_core_client = boto3.client(

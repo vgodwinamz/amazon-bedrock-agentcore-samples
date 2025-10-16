@@ -57,7 +57,6 @@ import boto3
 import click
 import sys
 import os
-from botocore.exceptions import ClientError
 from dotenv import load_dotenv
 from utils import get_aws_region
 

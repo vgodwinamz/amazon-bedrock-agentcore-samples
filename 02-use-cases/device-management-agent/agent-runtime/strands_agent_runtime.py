@@ -36,9 +36,7 @@ import os
 import json
 import logging
 import requests
-import asyncio
 from dotenv import load_dotenv
-import utils
 import access_token
 
 # Import Strands Agents SDK

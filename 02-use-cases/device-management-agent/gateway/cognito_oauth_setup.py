@@ -144,10 +144,14 @@ def update_env_file(file_path, updates, description):
         
         print("\n✅ Created new {} with Cognito configuration:".format(description))
     
-    # Print the configuration values
+    # Print the configuration values (mask sensitive data)
     for key, value in updates.items():
         if value:
-            print(f"   {key}={value}")
+            # Mask sensitive values
+            if 'SECRET' in key.upper() or 'PASSWORD' in key.upper() or 'TOKEN' in key.upper():
+                print(f"   {key}=***")
+            else:
+                print(f"   {key}={value}")
 
 # Update local .env file with the new values (existing functionality)
 env_file_path = '.env'

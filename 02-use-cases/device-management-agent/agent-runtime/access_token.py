@@ -124,7 +124,8 @@ def get_gateway_access_token_bedrock(access_token: str):
         This function is decorated with @requires_access_token which handles
         the actual token retrieval from the AgentCore identity provider.
     """
-    print(f"Access Token from Bedrock AgentCore: {access_token}")
+    # Note: Not logging actual token for security reasons
+    print("Access Token received from Bedrock AgentCore")
     return access_token
 
 def get_gateway_access_token():
@@ -184,4 +185,5 @@ def get_gateway_access_token():
 
 if __name__ == "__main__":
     token = get_gateway_access_token()
-    print(f"Final token: {token}")
+    # Note: Not printing actual token for security reasons
+    print(f"Token retrieved: {'Yes' if token else 'No'}")

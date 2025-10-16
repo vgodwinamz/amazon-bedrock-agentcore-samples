@@ -69,7 +69,8 @@ client = GatewayClient(region_name="us-west-2")
 cognito_result = client.create_oauth_authorizer_with_cognito(COGNITO_AUTH_NAME)
 
 print("Cognito OAuth setup completed!")
-print(f"Client info: {cognito_result['client_info']}")
+# Note: Not printing client_info as it contains sensitive client_secret
+print("Client configuration retrieved successfully")
 
 # Extract values from the result
 client_info = cognito_result['client_info']

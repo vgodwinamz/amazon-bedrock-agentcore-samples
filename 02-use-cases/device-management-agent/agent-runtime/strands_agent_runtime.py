@@ -91,7 +91,7 @@ def check_mcp_server():
             logger.info("No bearer token available, trying to get one from Cognito...")
             try:
                 jwt_token = access_token.get_gateway_access_token()
-                logger.info(f"Retrieved token: {jwt_token}")
+                # Note: Not logging actual token for security reasons
                 logger.info(f"Cognito token obtained: {'Yes' if jwt_token else 'No'}")
             except Exception as e:
                 logger.error(f"Error getting Cognito token: {str(e)}", exc_info=True)
@@ -146,7 +146,8 @@ def initialize_agent():
             try:
                 #jwt_token = asyncio.run(access_token.get_gateway_access_token())
                 jwt_token = access_token.get_gateway_access_token()
-                logger.info(f"Retrieved token: {jwt_token}")
+                # Note: Not logging actual token for security reasons
+                logger.info("Token retrieved successfully")
             except Exception as e:
                 logger.error(f"Error getting Cognito token: {str(e)}", exc_info=True)
         

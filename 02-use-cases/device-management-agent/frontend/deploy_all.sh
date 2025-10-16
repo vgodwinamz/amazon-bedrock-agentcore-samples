@@ -1,7 +1,31 @@
 #!/bin/bash
 
-# Deployment workflow script for Device Management System
-# This script deploys all components in the correct order
+################################################################################
+# Device Management System - Complete Deployment Script (Frontend Copy)
+#
+# NOTE: This is a duplicate of the root-level deploy_all.sh script.
+# It exists in the frontend directory for convenience but should be kept
+# in sync with the main deployment script.
+#
+# RECOMMENDATION: Use the root-level deploy_all.sh instead:
+#   cd ../.. && ./deploy_all.sh
+#
+# This script orchestrates the end-to-end deployment of the Device Management
+# System, deploying all components in the correct order with proper dependency
+# management and configuration updates.
+#
+# DEPLOYMENT WORKFLOW:
+#   1. Prerequisites validation (AWS CLI, Python, pip, AWS credentials)
+#   2. Device Management Lambda function deployment
+#   3. Gateway creation with Cognito OAuth authentication
+#   4. Gateway target configuration with MCP tools
+#   5. Gateway observability setup (CloudWatch Logs, X-Ray)
+#   6. Agent Runtime deployment with OpenTelemetry instrumentation
+#   7. Frontend configuration updates
+#
+# For complete documentation, see the root-level deploy_all.sh script.
+#
+################################################################################
 
 set -e  # Exit on error
 

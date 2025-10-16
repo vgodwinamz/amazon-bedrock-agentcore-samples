@@ -1,4 +1,58 @@
 #!/usr/bin/python
+"""
+Amazon Cognito OAuth2 Credential Provider Management CLI
+
+This module provides a command-line interface for managing Amazon Cognito OAuth2
+credential providers in Amazon Bedrock AgentCore. It enables creation, deletion,
+and listing of OAuth2 credential providers used for agent authentication.
+
+The CLI tool automates the process of configuring OAuth2 authentication by:
+- Creating credential providers with Cognito configuration
+- Storing provider information in .env files for easy access
+- Managing provider lifecycle (create, delete, list)
+- Validating required environment variables
+
+Key Features:
+    - Create OAuth2 credential providers with custom names
+    - Automatic .env file management for provider persistence
+    - List all existing credential providers
+    - Delete credential providers with confirmation prompts
+    - Environment variable validation and error handling
+
+Commands:
+    create: Create a new Cognito OAuth2 credential provider
+    delete: Delete an existing credential provider
+    list: List all OAuth2 credential providers
+
+Environment Variables Required:
+    COGNITO_CLIENT_ID: Amazon Cognito app client ID
+    COGNITO_CLIENT_SECRET: Amazon Cognito app client secret
+    COGNITO_DISCOVERY_URL: OIDC discovery URL/issuer
+    COGNITO_AUTH_URL: Authorization endpoint URL
+    COGNITO_TOKEN_URL: Token endpoint URL
+    AWS_REGION: AWS region for AgentCore operations
+
+Environment Variables Managed:
+    COGNITO_PROVIDER_NAME: Name of the created credential provider
+
+Example Usage:
+    Create a new provider:
+    >>> python cognito_credentials_provider.py create --name my-provider
+    
+    List all providers:
+    >>> python cognito_credentials_provider.py list
+    
+    Delete a provider:
+    >>> python cognito_credentials_provider.py delete --name my-provider
+    
+    Delete with auto-confirmation:
+    >>> python cognito_credentials_provider.py delete --name my-provider --confirm
+
+Notes:
+    - Provider names are stored in .env file for easy reference
+    - Deletion requires confirmation unless --confirm flag is used
+    - All operations require valid AWS credentials
+"""
 import boto3
 import click
 import sys

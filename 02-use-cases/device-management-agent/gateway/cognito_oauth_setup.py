@@ -1,3 +1,60 @@
+"""
+Amazon Cognito OAuth Configuration Setup Script
+
+This module automates the configuration of Amazon Cognito OAuth authentication
+for the Device Management System. It creates OAuth authorizers using the Bedrock
+AgentCore Starter Toolkit and updates environment files with the necessary
+authentication credentials.
+
+The script performs the following operations:
+1. Creates an OAuth authorizer with Amazon Cognito integration
+2. Extracts authentication endpoints and credentials
+3. Updates local .env file with Cognito configuration
+4. Updates agent-runtime .env file with OAuth credentials
+5. Provides formatted output of all configuration values
+
+Key Features:
+    - Automatic OAuth authorizer creation via GatewayClient
+    - Dual .env file management (local and agent-runtime)
+    - Intelligent URL parsing and endpoint construction
+    - Configuration validation and error handling
+    - Idempotent updates (creates or updates existing values)
+
+Environment Variables Required:
+    COGNITO_AUTH_NAME: Name for the Cognito OAuth authorizer
+
+Environment Variables Updated (Local .env):
+    COGNITO_USERPOOL_ID: Amazon Cognito User Pool ID
+    COGNITO_CLIENT_ID: OAuth client ID
+    COGNITO_CLIENT_SECRET: OAuth client secret
+    COGNITO_DOMAIN: Cognito domain URL
+
+Environment Variables Updated (Agent-Runtime .env):
+    COGNITO_CLIENT_ID: OAuth client ID
+    COGNITO_CLIENT_SECRET: OAuth client secret
+    COGNITO_DISCOVERY_URL: OIDC discovery endpoint
+    COGNITO_AUTH_URL: Authorization endpoint
+    COGNITO_TOKEN_URL: Token endpoint
+
+Example Usage:
+    Set COGNITO_AUTH_NAME in .env file, then run:
+    >>> python cognito_oauth_setup.py
+    
+    Output:
+    Cognito OAuth setup completed!
+    Client info: {...}
+    ✅ Updated existing local .env file with Cognito configuration:
+       COGNITO_USERPOOL_ID=...
+       COGNITO_CLIENT_ID=...
+    ✅ Updated existing agent-runtime .env file with Cognito configuration:
+       COGNITO_DISCOVERY_URL=...
+
+Notes:
+    - Creates new .env files if they don't exist
+    - Updates existing values without removing other configuration
+    - Validates all required credentials before updating files
+    - Constructs missing URLs from available information
+"""
 from bedrock_agentcore_starter_toolkit.operations.gateway.client import GatewayClient
 from dotenv import load_dotenv
 import os

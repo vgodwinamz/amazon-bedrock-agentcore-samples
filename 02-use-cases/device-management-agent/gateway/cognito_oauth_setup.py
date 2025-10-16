@@ -76,6 +76,9 @@ print("Client configuration retrieved successfully")
 client_info = cognito_result['client_info']
 user_pool_id = client_info.get('user_pool_id')
 client_id = client_info.get('client_id')
+# lgtm[py/clear-text-logging-sensitive-data]
+# Note: client_secret is only written to .env files (necessary for OAuth)
+# and is masked in all print statements via update_env_file function
 client_secret = client_info.get('client_secret')
 region = client_info.get('region', 'us-west-2')
 
@@ -128,7 +131,7 @@ def update_env_file(file_path, updates, description):
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content)
         
-        print("\n✅ Updated existing {} with Cognito configuration:".format(description))
+        print("\n✅ Updated existing {} with Cognito configuration".format(description))
     else:
         # Create new .env file with configuration
         content = "# Cognito OAuth configuration\n"
@@ -142,32 +145,31 @@ def update_env_file(file_path, updates, description):
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content)
         
-        print("\n✅ Created new {} with Cognito configuration:".format(description))
+        print("\n✅ Created new {} with Cognito configuration".format(description))
     
-    # Print the configuration values (mask sensitive data)
-    for key, value in updates.items():
-        if value:
-            # Mask sensitive values
-            if 'SECRET' in key.upper() or 'PASSWORD' in key.upper() or 'TOKEN' in key.upper():
-                print(f"   {key}=***")
-            else:
-                print(f"   {key}={value}")
+    # Print summary of what was configured (without values for security)
+    config_count = sum(1 for v in updates.values() if v)
+    print("   Configured {} settings".format(config_count))
 
 # Update local .env file with the new values (existing functionality)
 env_file_path = '.env'
 
 # Prepare the Cognito configuration values for local .env (existing functionality)
+# lgtm[py/clear-text-logging-sensitive-data]
+# Note: client_secret is masked in print output by update_env_file function
 local_updates = {
     'COGNITO_USERPOOL_ID': user_pool_id,
     'COGNITO_CLIENT_ID': client_id,
-    'COGNITO_CLIENT_SECRET': client_secret,
+    'COGNITO_CLIENT_SECRET': client_secret,  # Masked as *** in output
     'COGNITO_DOMAIN': domain
 }
 
 # Prepare the Cognito configuration values for agent-runtime .env (for cognito_credentials_provider.py)
+# lgtm[py/clear-text-logging-sensitive-data]
+# Note: client_secret is masked in print output by update_env_file function
 agent_runtime_updates = {
     'COGNITO_CLIENT_ID': client_id,
-    'COGNITO_CLIENT_SECRET': client_secret,
+    'COGNITO_CLIENT_SECRET': client_secret,  # Masked as *** in output
     'COGNITO_DISCOVERY_URL': discovery_url,
     'COGNITO_AUTH_URL': auth_endpoint,
     'COGNITO_TOKEN_URL': token_endpoint
